@@ -7,10 +7,13 @@
 ```javascript
     import ScrollLoader from 'scroll-loader';
 
-    const el = document.getElementById('#el-to-listen');
+    const el = document.getElementById('el-to-listen');
     const scrollloader = new ScrollLoader();
+    
+    // 当 el 元素滑动到屏幕底部时，执行 updateCnt
     scrollloader.addListener(el, updateCnt);
 
+    // 如果涉及异步操作，那么应该返回 promise，因为在执行该函数后， scroll-loader 还有事做
     function updateCnt(page) {
         return new Promise((resolve, reject) => {
             $.ajax({
